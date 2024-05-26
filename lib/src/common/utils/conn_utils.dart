@@ -14,4 +14,20 @@ class ConnUtil {
       return false;
     }
   }
+
+  static Future<bool> isConnected({String url = 'google.com'}) async {
+    try {
+      return checkConnection();
+    } on SocketException catch (_) {
+      return false;
+    }
+  }
+
+  static Future<bool> isDisconnected({String url = 'google.com'}) async {
+    try {
+      return !(await checkConnection());
+    } on SocketException catch (_) {
+      return true;
+    }
+  }
 }
